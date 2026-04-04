@@ -1,9 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, CORS
 from db import get_connection
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 # GET all players
 @app.route('/players', methods=['GET'])
