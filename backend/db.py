@@ -15,10 +15,12 @@ def get_connection():
     )
 
 
-if __name__ == "__main__":
-    try:
-        conn = get_connection()
-        print("Connection successful!")
-        conn.close()
-    except Exception as e:
-        print(f"Connection failed: {e}")
+# test connection
+
+# if __name__ == "__main__":
+#     try:
+#         conn = get_connection()
+#         print("Connection successful!")
+#         conn.close()
+#     except Exception as e:
+#         print(f"Connection failed: {e}")
