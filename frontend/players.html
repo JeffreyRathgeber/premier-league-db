@@ -17,17 +17,6 @@
     <input id="team_id" placeholder="Team ID">
     <button onclick="createPlayer()">Add Player</button>
 
-    <h2>Update Player</h2>
-    <input id="update_id" placeholder="Player ID">
-    <input id="update_first_name" placeholder="First Name">
-    <input id="update_last_name" placeholder="Last Name">
-    <input id="update_date_of_birth" placeholder="Date of Birth (YYYY-MM-DD)">
-    <input id="update_nationality" placeholder="Nationality">
-    <input id="update_position" placeholder="Position">
-    <input id="update_shirt_number" placeholder="Shirt #">
-    <input id="update_team_id" placeholder="Team ID">
-    <button onclick="updatePlayer()">Update Player</button>
-
     <h2>Players</h2>
     <table border="1" cellpadding="8">
         <thead>
@@ -40,11 +29,13 @@
                 <th>Position</th>
                 <th>Shirt #</th>
                 <th>Team ID</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody id="players-body"></tbody>
     </table>
 
-    <script src="main.js"></script>
+    <script src="api.js"></script>
+    <script src="players.js"></script>
 </body>
 </html>
