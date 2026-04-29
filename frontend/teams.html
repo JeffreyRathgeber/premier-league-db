@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Premier League Teams</title>
+</head>
+<body>
+    <h1>Premier League Teams</h1>
+
+    <h2>Add Team</h2>
+    <input id="name" placeholder="Name">
+    <input id="abbreviation" placeholder="Abbreviation">
+    <input id="stadium" placeholder="Stadium">
+    <input id="city" placeholder="City">
+    <input id="founded_year" placeholder="Founded Year" type="number">
+    <input id="manager_id" placeholder="Manager ID" type="number">
+    <button onclick="createTeam()">Add Team</button>
+
+    <h2>Teams</h2>
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Abbreviation</th>
+                <th>Stadium</th>
+                <th>City</th>
+                <th>Founded</th>
+                <th>Manager ID</th>
+                <th>Stats</th>
+                <th>Standings</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="teams-body"></tbody>
+    </table>
+
+    <script src="api.js"></script>
+    <script src="teams.js"></script>
+</body>
+</html>

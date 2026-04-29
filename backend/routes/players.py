@@ -1,4 +1,5 @@
 import datetime
+import mysql.connector
 from flask import Blueprint, request, jsonify
 from db import get_connection
 
@@ -37,15 +38,20 @@ def create_player():
     data = request.get_json()
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute(
-        'INSERT INTO Players (first_name, last_name, date_of_birth, nationality, position, shirt_number, team_id) VALUES (%s, %s, %s, %s, %s, %s, %s)',
-        (data['first_name'], data['last_name'], data.get('date_of_birth'), data.get('nationality'), data.get('position'), data.get('shirt_number'), data.get('team_id'))
-    )
-    conn.commit()
-    lastrowid = cursor.lastrowid
-    cursor.close()
-    conn.close()
-    return jsonify({'message': 'Player created', 'id': lastrowid}), 201
+    try:
+        cursor.execute(
+            'INSERT INTO Players (first_name, last_name, date_of_birth, nationality, position, shirt_number, team_id) VALUES (%s, %s, %s, %s, %s, %s, %s)',
+            (data['first_name'], data['last_name'], data.get('date_of_birth'), data.get('nationality'), data.get('position'), data.get('shirt_number'), data.get('team_id'))
+        )
+        conn.commit()
+        lastrowid = cursor.lastrowid
+        cursor.close()
+        conn.close()
+        return jsonify({'message': 'Player created', 'id': lastrowid}), 201
+    except mysql.connector.IntegrityError:
+        cursor.close()
+        conn.close()
+        return jsonify({'error': f"Team ID {data.get('team_id')} does not exist"}), 400
 
 
 @players_bp.route('/players/<int:id>', methods=['PUT'])
@@ -53,14 +59,19 @@ def update_player(id):
     data = request.get_json()
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute(
-        'UPDATE Players SET first_name=%s, last_name=%s, date_of_birth=%s, nationality=%s, position=%s, shirt_number=%s, team_id=%s WHERE player_id=%s',
-        (data['first_name'], data['last_name'], data.get('date_of_birth'), data.get('nationality'), data.get('position'), data.get('shirt_number'), data.get('team_id'), id)
-    )
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return jsonify({'message': 'Player updated'})
+    try:
+        cursor.execute(
+            'UPDATE Players SET first_name=%s, last_name=%s, date_of_birth=%s, nationality=%s, position=%s, shirt_number=%s, team_id=%s WHERE player_id=%s',
+            (data['first_name'], data['last_name'], data.get('date_of_birth'), data.get('nationality'), data.get('position'), data.get('shirt_number'), data.get('team_id'), id)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'message': 'Player updated'})
+    except mysql.connector.IntegrityError:
+        cursor.close()
+        conn.close()
+        return jsonify({'error': f"Team ID {data.get('team_id')} does not exist"}), 400
 
 
 @players_bp.route('/players/<int:id>', methods=['DELETE'])

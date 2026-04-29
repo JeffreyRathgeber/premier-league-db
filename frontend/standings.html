@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Standings</title>
+</head>
+<body>
+    <h1 id="page-title">Team Standings</h1>
+    <a href="teams.html">← Back to Teams</a>
+
+    <h2>Add Matchday</h2>
+    <input id="new_matchday" placeholder="Matchday #" type="number">
+    <input id="new_played" placeholder="Played" type="number">
+    <input id="new_won" placeholder="Won" type="number">
+    <input id="new_drawn" placeholder="Drawn" type="number">
+    <input id="new_lost" placeholder="Lost" type="number">
+    <input id="new_goals_for" placeholder="Goals For" type="number">
+    <input id="new_goals_against" placeholder="Goals Against" type="number">
+    <input id="new_goal_difference" placeholder="Goal Diff" type="number">
+    <input id="new_points" placeholder="Points" type="number">
+    <input id="new_position" placeholder="Position" type="number">
+    <button onclick="addMatchday()">Add Matchday</button>
+
+    <h2>Select Matchday</h2>
+    <select id="matchday-select" onchange="onMatchdayChange()">
+        <option value="">-- Select a matchday --</option>
+    </select>
+    <button onclick="deleteMatchday()" style="margin-left:8px">Delete Matchday</button>
+
+    <div id="standings-container" style="margin-top: 1rem;"></div>
+
+    <script src="api.js"></script>
+    <script src="standings.js"></script>
+</body>
+</html>

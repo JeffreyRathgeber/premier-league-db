@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Premier League Matches</title>
+</head>
+<body>
+    <h1>Premier League Matches</h1>
+
+    <h2>Add Match</h2>
+    <input id="new_matchday"     placeholder="Matchday #"         type="number">
+    <input id="new_match_date"   placeholder="Date (YYYY-MM-DD)">
+    <input id="new_kickoff_time" placeholder="Kickoff (HH:MM:SS)">
+    <input id="new_home_team_id" placeholder="Home Team ID"       type="number">
+    <input id="new_away_team_id" placeholder="Away Team ID"       type="number">
+    <input id="new_home_score"   placeholder="Home Score"         type="number">
+    <input id="new_away_score"   placeholder="Away Score"         type="number">
+    <input id="new_referee_id"   placeholder="Referee ID"         type="number">
+    <input id="new_attendance"   placeholder="Attendance"         type="number">
+    <button onclick="addMatch()">Add Match</button>
+
+    <h2>Select Matchday</h2>
+    <select id="matchday-select" onchange="loadMatchday()">
+        <option value="">-- Select a matchday --</option>
+    </select>
+
+    <div id="matches-container" style="margin-top:1rem;"></div>
+
+    <script src="api.js"></script>
+    <script src="matches.js"></script>
+</body>
+</html>

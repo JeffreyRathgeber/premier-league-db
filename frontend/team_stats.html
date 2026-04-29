@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Stats</title>
+</head>
+<body>
+    <h1 id="page-title">Team Stats</h1>
+    <a href="teams.html">← Back to Teams</a>
+
+    <h2>Add Stat</h2>
+    <input id="new_stat_name" placeholder="Stat Name">
+    <input id="new_stat_value" placeholder="Value" type="number" step="any">
+    <button onclick="addStat()">Add Stat</button>
+
+    <h2>Stats</h2>
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Stat</th>
+                <th>Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="stats-body"></tbody>
+    </table>
+
+    <script src="api.js"></script>
+    <script src="team_stats.js"></script>
+</body>
+</html>

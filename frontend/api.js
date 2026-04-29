@@ -5,7 +5,12 @@ function apiFetch(path, options = {}) {
         headers: { 'Content-Type': 'application/json' },
         ...options
     }).then(res => {
-        if (!res.ok) throw new Error(`${options.method || 'GET'} ${path} failed: ${res.status}`);
-        return res.json();
+        return res.json().then(data => {
+            if (!res.ok) {
+                alert(data.error || `Request failed: ${res.status}`);
+                throw new Error(data.error);
+            }
+            return data;
+        });
     });
 }

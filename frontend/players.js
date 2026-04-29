@@ -13,6 +13,7 @@ function loadPlayers() {
                     <td>${p.position}</td>
                     <td>${p.shirt_number}</td>
                     <td>${p.team_id}</td>
+                    <td><a href="player_stats.html?player_id=${p.player_id}">Stats</a></td>
                     <td>
                         <button onclick="editPlayer(${p.player_id}, '${p.first_name}', '${p.last_name}', '${p.date_of_birth}', '${p.nationality}', '${p.position}', ${p.shirt_number}, ${p.team_id})">Edit</button>
                         <button onclick="deletePlayer(${p.player_id})">Delete</button>
@@ -34,6 +35,7 @@ function editPlayer(id, first_name, last_name, date_of_birth, nationality, posit
         <td><input value="${position}"></td>
         <td><input type="number" value="${shirt_number}"></td>
         <td><input type="number" value="${team_id}"></td>
+        <td><a href="player_stats.html?player_id=${id}">Stats</a></td>
         <td>
             <button onclick="savePlayer(${id}, this)">Save</button>
             <button onclick="loadPlayers()">Cancel</button>
