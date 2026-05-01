@@ -1,0 +1,10 @@
+DELIMITER $$
+
+CREATE TRIGGER before_team_delete
+BEFORE DELETE ON Teams
+FOR EACH ROW
+BEGIN
+    DELETE FROM Team_Stats WHERE team_id = OLD.team_id;
+END$$
+
+DELIMITER ;

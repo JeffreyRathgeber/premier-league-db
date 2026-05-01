@@ -8,6 +8,7 @@ from routes.team_stats import team_stats_bp
 from routes.player_stats import player_stats_bp
 from routes.standings import standings_bp
 from routes.matches import matches_bp
+from routes.top_scorers import top_scorers_bp
 
 
 def create_app():
@@ -22,6 +23,7 @@ def create_app():
     app.register_blueprint(player_stats_bp)
     app.register_blueprint(standings_bp)
     app.register_blueprint(matches_bp)
+    app.register_blueprint(top_scorers_bp)
 
     return app
 

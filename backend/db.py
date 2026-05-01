@@ -13,14 +13,3 @@ def get_connection():
         password=os.getenv('DB_PASSWORD', 'password'),
         database=os.getenv('DB_NAME', 'premier_league')
     )
-
-
-# test connection
-
-# if __name__ == "__main__":
-#     try:
-#         conn = get_connection()
-#         print("Connection successful!")
-#         conn.close()
-#     except Exception as e:
-#         print(f"Connection failed: {e}")
