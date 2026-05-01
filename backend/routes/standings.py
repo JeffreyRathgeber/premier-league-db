@@ -5,6 +5,31 @@ import mysql.connector
 standings_bp = Blueprint('standings', __name__)
 
 
+@standings_bp.route('/standings/matchdays', methods=['GET'])
+def list_matchdays():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT DISTINCT matchday FROM Standings ORDER BY matchday')
+    rows = [r[0] for r in cursor.fetchall()]
+    cursor.close()
+    conn.close()
+    return jsonify(rows)
+
+
+@standings_bp.route('/standings/matchday/<int:matchday>', methods=['GET'])
+def get_matchday_table(matchday):
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(
+        'SELECT * FROM Matchday_Standings WHERE matchday = %s ORDER BY position ASC',
+        (matchday,)
+    )
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return jsonify(rows)
+
+
 @standings_bp.route('/teams/<int:team_id>/standings', methods=['GET'])
 def get_standings(team_id):
     conn = get_connection()
