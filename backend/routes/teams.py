@@ -74,8 +74,13 @@ def update_team(id):
 def delete_team(id):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM Teams WHERE team_id = %s', (id,))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return jsonify({'message': 'Team deleted'})
+    try:
+        cursor.execute('DELETE FROM Teams WHERE team_id = %s', (id,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'message': 'Team deleted'})
+    except mysql.connector.IntegrityError:
+        cursor.close()
+        conn.close()
+        return jsonify({'error': 'Cannot delete this team because it is still referenced by players, matches, or standings. Remove those records first, then delete the team.'}), 400

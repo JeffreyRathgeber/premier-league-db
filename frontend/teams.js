@@ -78,7 +78,8 @@ function createTeam() {
 
 function deleteTeam(id) {
     apiFetch(`/teams/${id}`, { method: 'DELETE' })
-        .then(() => loadTeams());
+        .then(() => loadTeams())
+        .catch(() => {});
 }
 
 loadTeams();

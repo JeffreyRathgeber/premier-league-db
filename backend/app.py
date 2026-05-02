@@ -9,6 +9,10 @@ from routes.player_stats import player_stats_bp
 from routes.standings import standings_bp
 from routes.matches import matches_bp
 from routes.top_scorers import top_scorers_bp
+from routes.transfer import transfer_bp
+from routes.referee_workload import referee_workload_bp
+from routes.team_goal_summary import team_goal_summary_bp
+from routes.manager_performance import manager_performance_bp
 
 
 def create_app():
@@ -24,6 +28,10 @@ def create_app():
     app.register_blueprint(standings_bp)
     app.register_blueprint(matches_bp)
     app.register_blueprint(top_scorers_bp)
+    app.register_blueprint(transfer_bp)
+    app.register_blueprint(referee_workload_bp)
+    app.register_blueprint(team_goal_summary_bp)
+    app.register_blueprint(manager_performance_bp)
 
     return app
 

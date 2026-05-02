@@ -16,7 +16,7 @@ SELECT
     s.goals_for,
     s.goals_against,
     s.goal_difference,
-    s.points
+    fn_points_from_record(s.won, s.drawn) AS points
 FROM Standings s
 JOIN Teams t ON t.team_id = s.team_id
 ORDER BY s.matchday ASC, s.position ASC;

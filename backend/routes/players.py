@@ -10,7 +10,7 @@ players_bp = Blueprint('players', __name__)
 def get_players():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute('SELECT * FROM Players')
+    cursor.execute('SELECT *, fn_player_age(date_of_birth) AS age FROM Players')
     players = cursor.fetchall()
     cursor.close()
     conn.close()

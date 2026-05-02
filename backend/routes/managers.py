@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from db import get_connection
+import mysql.connector
 
 managers_bp = Blueprint('managers', __name__)
 
@@ -63,8 +64,13 @@ def update_manager(id):
 def delete_manager(id):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM Managers WHERE manager_id = %s', (id,))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return jsonify({'message': 'Manager deleted'})
+    try:
+        cursor.execute('DELETE FROM Managers WHERE manager_id = %s', (id,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'message': 'Manager deleted'})
+    except mysql.connector.IntegrityError:
+        cursor.close()
+        conn.close()
+        return jsonify({'error': 'Cannot delete this manager because they are still assigned to a team. Reassign or remove that team first, then delete the manager.'}), 400

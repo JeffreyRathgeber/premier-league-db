@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from db import get_connection
+import mysql.connector
 
 referees_bp = Blueprint('referees', __name__)
 
@@ -63,8 +64,13 @@ def update_referee(id):
 def delete_referee(id):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM Referees WHERE referee_id = %s', (id,))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return jsonify({'message': 'Referee deleted'})
+    try:
+        cursor.execute('DELETE FROM Referees WHERE referee_id = %s', (id,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'message': 'Referee deleted'})
+    except mysql.connector.IntegrityError:
+        cursor.close()
+        conn.close()
+        return jsonify({'error': 'Cannot delete this referee because they are still assigned to one or more matches. Remove those matches first, then delete the referee.'}), 400

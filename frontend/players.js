@@ -9,6 +9,7 @@ function loadPlayers() {
                     <td>${p.first_name}</td>
                     <td>${p.last_name}</td>
                     <td>${p.date_of_birth}</td>
+                    <td>${p.age ?? ''}</td>
                     <td>${p.nationality}</td>
                     <td>${p.position}</td>
                     <td>${p.shirt_number}</td>
@@ -31,6 +32,7 @@ function editPlayer(id, first_name, last_name, date_of_birth, nationality, posit
         <td><input value="${first_name}"></td>
         <td><input value="${last_name}"></td>
         <td><input value="${date_of_birth}"></td>
+        <td></td>
         <td><input value="${nationality}"></td>
         <td><input value="${position}"></td>
         <td><input type="number" value="${shirt_number}"></td>

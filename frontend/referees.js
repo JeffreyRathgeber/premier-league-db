@@ -62,7 +62,8 @@ function createReferee() {
 
 function deleteReferee(id) {
     apiFetch(`/referees/${id}`, { method: 'DELETE' })
-        .then(() => loadReferees());
+        .then(() => loadReferees())
+        .catch(() => {});
 }
 
 loadReferees();

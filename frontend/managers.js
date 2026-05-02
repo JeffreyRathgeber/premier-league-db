@@ -62,7 +62,8 @@ function createManager() {
 
 function deleteManager(id) {
     apiFetch(`/managers/${id}`, { method: 'DELETE' })
-        .then(() => loadManagers());
+        .then(() => loadManagers())
+        .catch(() => {});
 }
 
 loadManagers();
